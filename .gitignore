@@ -53,3 +53,7 @@ dkms.conf
 
 *.DS_Store
 *.vscode/
+
+
+build-SmartCalcPlus-Desktop_x86_darwin_generic_mach_o_64bit-Debug
+*/SmartCalcPlus/CMakeLists.txt.user

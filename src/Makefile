@@ -1,7 +1,7 @@
-CC 			=	gcc
-CFLAGS 		=	-Wall -Wextra -std=c11
+CC 			=	g++
+CFLAGS 		=	-Wall -Wextra -std=c++17
 GCOV_FLAGS 	= 	-fprofile-arcs -ftest-coverage
-CHECK_FLAGS =	-lcheck -lm -lpthread 
+CHECK_FLAGS =	-lcheck -lm -lpthread
 FLAGS 		=	$(CFLAGS) $(CHECK_FLAGS) $(GCOV_FLAGS)
 GFLAGS 		=	$(FLAGS)
 
@@ -74,10 +74,16 @@ san: FLAGS += -fsanitize=address -g
 san: test
 	./test
 
-h:
+html:
 ifeq ($(UNAME), Linux)
 	firefox finish/index.html
 endif
 ifeq ($(UNAME), Darwin)
 	open finish/index.html
 endif
+
+lint:
+	cp ../materials/linters/.clang-format ./
+	clang-format -n */*.h *.h */*.cc
+	clang-format -i */*.h *.h */*.cc
+	rm -rf .clang-format
